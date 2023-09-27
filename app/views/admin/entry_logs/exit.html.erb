@@ -1,0 +1,6 @@
+<h1>退室のバーコードを読み取ってください</h1>
+<%= form_with model: @entry_log, url: update_exit_time_admin_entry_logs_path, method: :patch do |form| %>
+  <%= form.label :barcode, "バーコード" %>
+  <%= form.text_field :barcode, autofocus: true %>
+  <%= form.submit "読み取り" %>
+<% end %>

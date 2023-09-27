@@ -1,0 +1,53 @@
+<h1>予約・入退室一覧</h1>
+
+
+<div>
+  <%= link_to '入室のバーコードを読み取る', new_admin_entry_log_path %>
+  <%= link_to '退室のバーコードを読み取る', exit_admin_entry_logs_path %>
+</div>
+
+<h2>予約一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>予約日時</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.user_id %></td>
+        <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>入退室一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>入室時間</th>
+      <th>退室時間</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @entry_logs.each do |entry_log| %>
+      <tr>
+        <td><%= entry_log.user_id %></td>
+        <td><%= entry_log.entry_time&.strftime('%Y/%m/%d %H:%M') || 'null' %></td>
+        <td><%= entry_log.exit_time&.strftime('%Y/%m/%d %H:%M') || 'null' %></td>
+        <td>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,8 @@
+<h1>バーコードを読み取ってください</h1>
+<%= form_with model: @entry_log, url: admin_entry_logs_path do |form| %>
+  <%= form.label :barcode, "バーコード" %>
+  <%= form.text_field :barcode, autofocus: true %>
+  <%= form.submit "読み取り" %>
+<% end %>
+
+<%= link_to '退室管理画面へ', exit_admin_entry_logs_path %>

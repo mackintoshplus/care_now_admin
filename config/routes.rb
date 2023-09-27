@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { sessions: 'admins/sessions' }
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :admins
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :admin do
+    resources :entry_logs do
+      collection do
+        get :exit
+        post :update_exit_time
+      end
+    end
+  end
+
+
+ 
 end

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Admins::SessionsController < Devise::SessionsController
+  protected
+  def after_sign_in_path_for(resource)
+    admin_entry_logs_path # ここを変更します。
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -24,25 +28,5 @@ class Admins::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
-  before_action :configure_sign_in_params, only: [:create]
 
-  protected
-  
-  def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:extra_attribute])
-  end
-
-  def after_sign_in_path_for(resource)
-  # 例: 管理者のダッシュボードページにリダイレクト
-  admin_dashboard_path
-  end
-
-  def create
-  # 何らかのカスタムロジック
-  super
-  flash[:notice] = "カスタムメッセージ: ログインに成功しました！"
-  end
-
-  
 end
